@@ -13,16 +13,16 @@ class HashTable {
     return customHash(key) % this.size;
   }
 
-  insert(key, value) {
+  set(key, value) {
     // Insert a key-value pair into the hash table
     const index = this.hash(key); // Calculate the index using the hash function
     if (!this.table[index]) {
       this.table[index] = []; // Initialize the linked list if it is empty
     }
     // Check if the key already exists in the linked list
-    for (let [k, v] of this.table[index]) {
-      if (k === key) {
-        v = value; // Update the value if the key already exists
+    for (let i = 0; i < this.table[index].length; i++) {
+      if (this.table[index][i][0] === key) {
+        this.table[index][i][1] = value; // Update the value if the key already exists
         return;
       }
     }
